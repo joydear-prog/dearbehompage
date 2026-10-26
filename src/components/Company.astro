@@ -1,35 +1,25 @@
 ---
 import { site } from '../config/site';
+import { getLang, t } from '../i18n';
 
-const { company, works } = site;
+const lang = getLang(Astro.url);
+const { company } = t(lang);
 
 // 애플 확인 담당자가 사이트에서 회사 정보를 찾을 수 있도록 본문에도 노출합니다. 빈 값은 표시하지 않습니다.
-const rows = [
-  ['회사명', `${company.legalNameKo} (${company.legalNameEn})`],
-  ['대표', company.ceo],
-  ['설립', company.founded],
-  ['사업자등록번호', company.bizRegNo],
-  ['주소', `${company.addressKo}\n${company.addressEn}`],
-  ['대표 전화', company.phone],
-  ['이메일', company.email],
-  ['운영 시간', company.hours],
-].filter(([, value]) => value);
+const rows = company.rows.filter(([, value]) => value);
 ---
 
 <section id="company" class="bg-paper py-28 md:py-40">
   <div class="wrap grid gap-14 lg:grid-cols-12 lg:gap-12">
     <div class="lg:col-span-5">
-      <h2 class="max-w-[9em] text-headline font-bold">이야기를 만들던 팀이 대화를 만듭니다</h2>
-      <p class="mt-6 max-w-[28rem] text-graphite">
-        {company.legalNameKo}는 {company.founded} 서울 마포에서 웹툰 제작사로 시작했습니다. 카카오페이지, 리디, 네이버 시리즈 등에
-        웹툰을 선보이며 쌓아 온 캐릭터와 이야기 기획 역량으로, 이제 대화를 기억하는 AI 컴패니언을 만듭니다.
-      </p>
+      <h2 class="max-w-[9em] text-headline font-bold">{company.heading}</h2>
+      <p class="mt-6 max-w-[28rem] text-graphite">{company.story}</p>
     </div>
 
     <dl class="lg:col-span-6 lg:col-start-7">
       {
         rows.map(([label, value]) => (
-          <div class="grid gap-1 border-b border-rule py-5 first:pt-0 sm:grid-cols-[9rem_1fr] sm:gap-6">
+          <div class="grid gap-1 border-b border-rule py-5 first:pt-0 sm:grid-cols-[10rem_1fr] sm:gap-6">
             <dt class="text-[0.9375rem] text-graphite">{label}</dt>
             <dd class="whitespace-pre-line">{value}</dd>
           </div>
@@ -38,13 +28,16 @@ const rows = [
     </dl>
 
     <div class="mt-6 lg:col-span-12 lg:mt-16">
-      <h3 class="text-title font-bold">제작한 웹툰</h3>
+      <h3 class="text-title font-bold">{company.worksHeading}</h3>
+      {company.worksNote && <p class="mt-2 text-[0.875rem] text-graphite">{company.worksNote}</p>}
       <ul class="mt-6 grid border-t border-rule sm:grid-cols-2 sm:gap-x-12 lg:grid-cols-3">
         {
-          works.map((w) => (
+          site.works.map((w) => (
             <li class="border-b border-rule py-5">
-              <p class="font-semibold">{w.title}</p>
-              <p class="mt-1 text-[0.875rem] text-graphite">{w.platforms.join(', ')}</p>
+              <p class="font-semibold" lang="ko">
+                {w.title}
+              </p>
+              <p class="mt-1 text-[0.875rem] text-graphite">{w.platforms.map((p) => p[lang]).join(', ')}</p>
             </li>
           ))
         }

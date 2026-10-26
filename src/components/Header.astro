@@ -1,69 +1,109 @@
 ---
+import { getLang, isCurrent, localize, switchLang, t } from '../i18n';
 import { site } from '../config/site';
-import { href } from '../config/url';
 
 interface Props {
   isHome?: boolean;
 }
 
 const { isHome = false } = Astro.props;
-const section = (hash: string) => (isHome ? hash : href(hash));
-const current = (to: string) => (Astro.url.pathname.replace(/\/$/, '') === to ? 'page' : undefined);
+const lang = getLang(Astro.url);
+const ui = t(lang);
+const section = (hash: string) => (isHome ? hash : localize(lang, hash));
 
 const nav = [
-  { label: '서비스', to: section('#service') },
-  { label: '안전 원칙', to: section('#safety') },
-  { label: '회사', to: section('#company') },
-  { label: '고객지원', to: href('support') },
+  { label: ui.nav.service, to: section('#service') },
+  { label: ui.nav.safety, to: section('#safety') },
+  { label: ui.nav.company, to: section('#company') },
+  { label: ui.nav.support, to: localize(lang, 'support'), path: 'support' },
 ];
+const current = (path?: string) => (path && isCurrent(Astro.url, lang, path) ? 'page' : undefined);
+
+// KR / EN 토글: 지금 보고 있는 페이지의 다른 언어 버전으로 이동
+const switcher = [
+  { code: 'ko', label: 'KR', name: '한국어', to: switchLang(Astro.url, 'ko') },
+  { code: 'en', label: 'EN', name: 'English', to: switchLang(Astro.url, 'en') },
+] as const;
 ---
 
 <header class="site-header fixed inset-x-0 top-0 z-50" data-header data-tone={isHome ? 'light' : 'solid'}>
   <div class="wrap flex h-16 items-center justify-between">
-    <a href={href()} class="text-[1.375rem] leading-none font-extrabold tracking-[-0.055em]">
-      <span class="sr-only">{site.brandKo} 홈</span>
+    <a href={localize(lang)} class="text-[1.375rem] leading-none font-extrabold tracking-[-0.055em]">
+      <span class="sr-only">{ui.nav.home}</span>
       <span aria-hidden="true">{site.brand}<span class="brand-dot">.</span></span>
     </a>
 
-    <nav aria-label="주요 메뉴" class="hidden md:block">
-      <ul class="flex items-center gap-8 text-[0.9375rem] font-medium">
+    <div class="flex items-center gap-6 md:gap-8">
+      <nav aria-label={ui.nav.label} class="hidden md:block">
+        <ul class="flex items-center gap-8 text-[0.9375rem] font-medium">
+          {
+            nav.map((item) => (
+              <li>
+                <a
+                  href={item.to}
+                  aria-current={current(item.path)}
+                  class="transition-opacity duration-300 hover:opacity-60 aria-[current=page]:underline aria-[current=page]:underline-offset-8"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+          <li>
+            <a
+              href={section('#contact')}
+              class="inline-flex h-10 items-center rounded-full border border-current px-5 transition-colors duration-300 hover:bg-current/10"
+            >
+              {ui.nav.contact}
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <ul class="lang-switch flex items-center text-[0.8125rem] font-semibold tracking-[0.02em]" aria-label={ui.nav.langLabel}>
         {
-          nav.map((item) => (
-            <li>
-              <a href={item.to} aria-current={current(item.to)} class="transition-opacity duration-300 hover:opacity-60 aria-[current=page]:underline aria-[current=page]:underline-offset-8">
-                {item.label}
+          switcher.map((s, i) => (
+            <li class="flex items-center">
+              {i > 0 && (
+                <span class="px-1.5 opacity-40" aria-hidden="true">
+                  /
+                </span>
+              )}
+              <a
+                href={s.to}
+                hreflang={s.code}
+                lang={s.code}
+                aria-label={s.name}
+                aria-current={s.code === lang ? 'true' : undefined}
+                class="grid h-11 min-w-6 place-items-center opacity-55 transition-opacity duration-300 hover:opacity-100 aria-[current=true]:opacity-100"
+              >
+                {s.label}
               </a>
             </li>
           ))
         }
-        <li>
-          <a
-            href={section('#contact')}
-            class="inline-flex h-10 items-center rounded-full border border-current px-5 transition-colors duration-300 hover:bg-current/10"
-          >
-            문의하기
-          </a>
-        </li>
       </ul>
-    </nav>
 
-    <button
-      type="button"
-      class="-mr-2 h-11 px-2 text-[0.9375rem] font-semibold md:hidden"
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-      data-menu-toggle
-    >
-      메뉴
-    </button>
+      <button
+        type="button"
+        class="-mr-2 h-11 px-2 text-[0.9375rem] font-semibold md:hidden"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        data-menu-toggle
+        data-label-open={ui.nav.menu}
+        data-label-close={ui.nav.close}
+      >
+        {ui.nav.menu}
+      </button>
+    </div>
   </div>
 
-  <nav id="mobile-menu" aria-label="모바일 메뉴" class="fixed inset-x-0 top-16 bottom-0 bg-ink-deep text-white md:hidden" hidden>
+  <nav id="mobile-menu" aria-label={ui.nav.mobileLabel} class="fixed inset-x-0 top-16 bottom-0 bg-ink-deep text-white md:hidden" hidden>
     <ul class="wrap flex flex-col pt-6">
       {
-        [...nav, { label: '문의하기', to: section('#contact') }].map((item) => (
+        [...nav, { label: ui.nav.contact, to: section('#contact'), path: undefined }].map((item) => (
           <li class="border-b border-white/15">
-            <a href={item.to} aria-current={current(item.to)} class="block py-5 text-[1.75rem] font-bold tracking-[-0.03em]">
+            <a href={item.to} aria-current={current(item.path)} class="block py-5 text-[1.75rem] font-bold tracking-[-0.03em]">
               {item.label}
             </a>
           </li>

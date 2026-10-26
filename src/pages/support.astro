@@ -26,7 +26,7 @@ const faqs = [
     a: '문제가 된 메시지를 길게 누른 뒤 신고하기를 선택하세요. 신고된 내용은 검토 후 조치합니다.',
   },
   {
-    q: `${site.brandKo}의 캐릭터는 실제 사람인가요?`,
+    q: '디어비의 캐릭터는 실제 사람인가요?',
     a: '아니요. 모든 캐릭터는 AI입니다. 앱 안에서 항상 AI임을 표시합니다.',
   },
   {
@@ -36,13 +36,13 @@ const faqs = [
 ];
 ---
 
-<DocLayout title="고객지원" meta={`${site.app.name} 앱 이용 중 궁금한 점을 확인하세요.`}>
+<DocLayout title="고객지원" meta="디어비 앱 이용 중 궁금한 점을 확인하세요.">
   <h2 id="contact" class="mt-0">문의하기</h2>
   <table>
     <tbody>
       <tr><th scope="row">이메일</th><td><a href={`mailto:${company.supportEmail}`}>{company.supportEmail}</a></td></tr>
       {company.phone && <tr><th scope="row">전화</th><td>{company.phone}</td></tr>}
-      <tr><th scope="row">운영 시간</th><td>{company.hours}</td></tr>
+      <tr><th scope="row">운영 시간</th><td>{company.hoursKo}</td></tr>
     </tbody>
   </table>
   <p>문의를 보내실 때 앱 버전과 기기 모델을 함께 적어 주시면 더 빠르게 도와드릴 수 있습니다.</p>

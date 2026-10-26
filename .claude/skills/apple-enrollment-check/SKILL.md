@@ -14,7 +14,8 @@ grep -rnE "TODO|홍길동|000-00-00000|0000-0000|테헤란로 000|\[[^]]*(사업
 ```
 
 - `src/config/site.ts`의 `TODO` 주석이 붙은 값이 전부 실제 값으로 바뀌었는지 확인합니다.
-- `src/pages/privacy.astro`의 위탁사 표(`[클라우드 사업자명]`, `[AI 모델 제공자명]`, `[국가]`)도 확인합니다.
+- `src/pages/privacy.astro`와 `src/pages/en/privacy.astro`의 위탁사 표(`[클라우드 사업자명]`/`[Cloud provider]`, `[국가]`/`[Country]` 등)도 확인합니다.
+- 한국어와 영어판의 회사 정보·약속(계정 삭제 경로 등)이 서로 같은지 확인합니다 (`src/i18n/ui.ts`, `src/pages/en/*`).
 
 ## 2. Apple 법인 등록 요건 (developer.apple.com/programs/enroll)
 
@@ -31,7 +32,7 @@ grep -rnE "TODO|홍길동|000-00-00000|0000-0000|테헤란로 000|\[[^]]*(사업
 
 | 항목 | 경로 |
 |---|---|
-| Privacy Policy URL | `/privacy` — 수집 항목, 대화 데이터 처리, 삭제 방법, 연락처 포함 |
+| Privacy Policy URL | `/privacy` (영문 `/en/privacy`) — 수집 항목, 대화 데이터 처리, 삭제 방법, 연락처 포함 |
 | Support URL | `/support` — 실제로 답장받을 수 있는 연락 수단 포함 |
 | 계정 삭제 안내 (가이드라인 5.1.1(v)) | `/support` FAQ, `/privacy` 8조의 메뉴 경로가 실제 앱과 일치 |
 | UGC·AI 대화 안전장치 (가이드라인 1.2) | 신고·차단·필터링 안내가 실제 앱 기능과 일치 (`Safety.astro`) |

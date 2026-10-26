@@ -13,7 +13,12 @@ export default defineConfig({
   site,
   base,
   trailingSlash: 'ignore',
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      i18n: { defaultLocale: 'ko', locales: { ko: 'ko-KR', en: 'en-US' } },
+      filter: (page) => !page.includes('/404'),
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },

@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | 스택 | Astro 7 · Tailwind CSS v4 · GSAP ScrollTrigger · Lenis · Pretendard |
-| 페이지 | 홈 · 개인정보 처리방침 · 이용약관 · 고객지원 · 404 · sitemap · robots |
+| 페이지 | 홈 · 개인정보 처리방침 · 이용약관 · 고객지원 · 404 · sitemap · robots (한국어 `/`, 영어 `/en/`) |
 | 배포 | GitHub Pages (Actions), 커스텀 도메인 지원 |
 | 디자인 | "편지지 위의 만년필 잉크" — [DESIGN.md](DESIGN.md) |
 
@@ -20,10 +20,11 @@ Node 22.12 이상이 필요합니다.
 
 ## 실제 정보로 바꾸기
 
-1. **`src/config/site.ts`** — 법인명(국문/영문), 대표, 사업자등록번호, 주소, 전화, 이메일, 개인정보 보호책임자, 시행일. `TODO`가 붙은 값은 전부 교체합니다.
-2. **`src/pages/privacy.astro`** — 수집 항목과 위탁사 표(`[클라우드 사업자명]` 등)를 실제 운영에 맞게 수정합니다.
+1. **`src/config/site.ts`** — 법인명(국문/영문), 대표, 사업자등록번호, 주소, 전화, 이메일, 개인정보 보호책임자, 시행일, 제작 웹툰. `TODO`가 붙은 값을 확인합니다.
+   화면 문구는 **`src/i18n/ui.ts`**에 한국어·영어가 같은 구조로 들어 있습니다.
+2. **`src/pages/privacy.astro`**, **`src/pages/en/privacy.astro`** — 수집 항목과 위탁사 표(`[클라우드 사업자명]` 등)를 실제 운영에 맞게 수정합니다. 약관·고객지원도 영어판(`src/pages/en/`)을 함께 고칩니다.
 3. **`src/components/Safety.astro`**, **`src/pages/support.astro`** — 계정 삭제 경로, 신고 방법, 연령 제한이 실제 앱 동작과 같은지 확인합니다.
-4. 브랜드명이 바뀌면 `site.ts`의 `brand`/`brandKo`와 `public/favicon.svg`를 바꿉니다.
+4. 브랜드명이 바뀌면 `site.ts`의 `brand`, `ui.ts`의 `brandName`, `public/favicon.svg`를 바꿉니다.
 
 개인정보 처리방침과 이용약관은 **템플릿**입니다. 게시 전 법률 검토를 받으세요.
 
@@ -35,7 +36,7 @@ Apple은 법인 등록 시 [법인이 소유한 도메인의 공개 웹사이트
 - [ ] 신청자 이메일이 사이트와 같은 도메인 (`hello@회사도메인`)
 - [ ] 영문 법인명이 D-U-N-S 등록 정보와 정확히 일치
 - [ ] 홈·푸터에 주소, 전화, 이메일이 보임 (Apple 확인 전화 대비)
-- [ ] App Store Connect에 `https://도메인/privacy`, `https://도메인/support` 입력
+- [ ] App Store Connect에 `https://도메인/privacy`, `https://도메인/support` 입력 (영문 현지화에는 `/en/privacy`, `/en/support`)
 
 Claude Code에서 `/apple-enrollment-check`를 실행하면 남은 플레이스홀더와 요건을 자동으로 점검합니다.
 

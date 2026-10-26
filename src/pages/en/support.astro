@@ -1,0 +1,66 @@
+---
+/*
+ * Support (English) — 한국어 고객지원(src/pages/support.astro)의 영문판입니다.
+ * FAQ 답변은 앱의 실제 메뉴 경로와 일치해야 합니다.
+ */
+import DocLayout from '../../layouts/DocLayout.astro';
+import { site } from '../../config/site';
+
+const { company } = site;
+
+const faqs = [
+  {
+    q: 'How do I delete my account?',
+    a: "Go to Settings > Account > Delete Account in the app. This permanently deletes all your data, including your chat history, and can't be undone.",
+  },
+  {
+    q: 'Who can see my conversations?',
+    a: 'Your conversations are stored encrypted and are only used to generate replies and remember context. You can delete your chat history anytime in Settings.',
+  },
+  {
+    q: 'How do I cancel my subscription?',
+    a: "On your iPhone, go to Settings > [your name] > Subscriptions. Refunds are handled by Apple, and you can request one at reportaproblem.apple.com.",
+  },
+  {
+    q: 'How do I report an inappropriate conversation?',
+    a: 'Press and hold the message, then tap Report. We review every report and take action where needed.',
+  },
+  {
+    q: 'Are Dearbe characters real people?',
+    a: 'No. Every character is an AI, and the app always makes that clear.',
+  },
+  {
+    q: "I'm going through a really hard time.",
+    a: "You don't have to go through it alone. In Korea, you can call 109 (suicide prevention) or 1577-0199 (mental health crisis line) any time, day or night. Outside Korea, please contact your local emergency number or crisis line.",
+  },
+];
+---
+
+<DocLayout title="Support" meta="Answers to common questions about the Dearbe app.">
+  <h2 id="contact" class="mt-0">Contact us</h2>
+  <table>
+    <tbody>
+      <tr><th scope="row">Email</th><td><a href={`mailto:${company.supportEmail}`}>{company.supportEmail}</a></td></tr>
+      {company.phone && <tr><th scope="row">Phone</th><td>{company.phone}</td></tr>}
+      <tr><th scope="row">Hours</th><td>{company.hoursEn}</td></tr>
+    </tbody>
+  </table>
+  <p>Including your app version and device model helps us sort things out faster.</p>
+
+  <h2 id="faq">FAQ</h2>
+  <div class="border-t border-rule">
+    {
+      faqs.map(({ q, a }) => (
+        <details class="group border-b border-rule">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-5 font-semibold [&::-webkit-details-marker]:hidden">
+            {q}
+            <span class="text-[1.375rem] leading-none font-normal text-graphite transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+              +
+            </span>
+          </summary>
+          <p class="pb-6 text-graphite">{a}</p>
+        </details>
+      ))
+    }
+  </div>
+</DocLayout>

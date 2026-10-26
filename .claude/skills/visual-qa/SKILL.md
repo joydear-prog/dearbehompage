@@ -13,6 +13,7 @@ description: 이 Astro 사이트를 빌드·실행하고 데스크톱(1440)·모
 npm run build && npm run preview      # 백그라운드로 실행 (포트 4321)
 npm run shot                          # .shots/<page>-<desktop|mobile>.png
 npm run shot -- --pages /,/support    # 특정 페이지만
+npm run shot -- --pages /en/,/en/privacy,/en/terms,/en/support   # 영어판
 npm run shot -- --motion              # 모션을 켠 상태(타이핑 중간 등)로 캡처
 ```
 
@@ -23,7 +24,8 @@ npm run shot -- --motion              # 모션을 켠 상태(타이핑 중간 �
 ## 체크리스트
 
 - 390px에서 가로 스크롤이 없고, 한글 줄바꿈이 어절 단위로 자연스러움 (`word-break: keep-all`)
-- 히어로 괘선이 글줄 아래에 맞음, 헤더가 히어로 위에서는 흰 글씨 / 스크롤 후에는 편지지 배경
+- 한국어(`/`)와 영어(`/en/`) 모두 확인, KR/EN 토글이 같은 페이지의 다른 언어로 이동
+- 헤더가 히어로 위에서는 흰 글씨 / 스크롤 후에는 편지지 배경
 - 본문 대비 4.5:1 이상 (보조 텍스트 `text-graphite`, 어두운 배경 위 `text-white/55` 이상)
 - 터치 타깃 44px 이상, 키보드 포커스 링이 보임
 - 콘솔 에러 없음

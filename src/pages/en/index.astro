@@ -1,0 +1,19 @@
+---
+// 영어 홈 — 컴포넌트가 URL(/en/)을 보고 영어 문구(src/i18n/ui.ts)를 사용합니다.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Statement from '../../components/Statement.astro';
+import Services from '../../components/Services.astro';
+import Safety from '../../components/Safety.astro';
+import Company from '../../components/Company.astro';
+import Contact from '../../components/Contact.astro';
+---
+
+<BaseLayout isHome>
+  <Hero />
+  <Statement />
+  <Services />
+  <Safety />
+  <Company />
+  <Contact />
+</BaseLayout>

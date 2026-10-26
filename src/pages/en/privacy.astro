@@ -1,0 +1,128 @@
+---
+/*
+ * Privacy Policy (English) — 한국어 개인정보 처리방침(src/pages/privacy.astro)의 영문판입니다.
+ * ⚠️ 한국어판을 고치면 이 파일도 함께 고치세요. App Store Connect에는 /en/privacy 를 영문 URL로 쓸 수 있습니다.
+ */
+import DocLayout from '../../layouts/DocLayout.astro';
+import { site } from '../../config/site';
+
+const { company, legal } = site;
+const name = company.legalNameEn;
+---
+
+<DocLayout title="Privacy Policy" meta={`Effective ${legal.effectiveDateEn}`}>
+  <p class="note">
+    This is an English translation of our Korean Privacy Policy, provided for convenience. If the two versions differ, the
+    Korean version applies.
+  </p>
+  <p>
+    {name} (“we”, “us”) follows the Personal Information Protection Act of Korea and other applicable laws. This policy explains
+    how we handle the personal information of people who use the Dearbe app (the “Service”).
+  </p>
+
+  <h2 id="purpose">1. Why we process personal information</h2>
+  <ul>
+    <li>Account sign-up and management: identifying you, checking your age, and preventing misuse</li>
+    <li>Providing the Service: conversations with AI companions, remembering conversation context, and personalized replies</li>
+    <li>Keeping the Service safe: blocking harmful content, handling reports, and pointing people to professional help in a crisis</li>
+    <li>Paid features: confirming purchases and granting access (payments are processed by Apple)</li>
+    <li>Customer support and service announcements</li>
+  </ul>
+
+  <h2 id="items">2. What we collect</h2>
+  <table>
+    <thead>
+      <tr><th scope="col">Category</th><th scope="col">Information</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Required</td><td>Email address or Sign in with Apple identifier, nickname, birth year (for age checks)</td></tr>
+      <tr><td>Using the Service</td><td>Conversation content, character settings, usage history, device information (OS and app version)</td></tr>
+      <tr><td>Paid features</td><td>Purchase history (transaction IDs). We never collect card numbers or other payment details.</td></tr>
+      <tr><td>Support requests</td><td>Email address and the content of your request</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="ai">3. How we handle conversations</h2>
+  <ul>
+    <li>Conversations are processed to generate replies and remember context. They are encrypted in transit and at rest.</li>
+    <li>You can delete individual conversations or your entire chat history at any time in the app settings.</li>
+    <li>
+      If we ever use conversations to improve the Service, we will ask for your separate consent first and pseudonymize the data so it
+      can't identify you. You can withdraw that consent at any time.
+    </li>
+  </ul>
+
+  <h2 id="retention">4. How long we keep it</h2>
+  <p>We delete your personal information without delay when you delete your account, unless the law requires us to keep it longer.</p>
+  <ul>
+    <li>Records of contracts and cancellations: 5 years (Act on Consumer Protection in Electronic Commerce)</li>
+    <li>Records of consumer complaints and disputes: 3 years (Act on Consumer Protection in Electronic Commerce)</li>
+    <li>Access logs: 3 months (Protection of Communications Secrets Act)</li>
+  </ul>
+
+  <h2 id="third-party">5. Sharing with third parties</h2>
+  <p>We don't share your personal information with third parties unless you agree or the law requires it.</p>
+
+  <h2 id="outsourcing">6. Service providers and international transfers</h2>
+  <p>We work with the following service providers to run the Service.</p>
+  <table>
+    <thead>
+      <tr><th scope="col">Provider</th><th scope="col">What they do</th><th scope="col">Country</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>[Cloud provider]</td><td>Data storage and server operations</td><td>[Country]</td></tr>
+      <tr><td>[AI model provider]</td><td>Generating conversation replies</td><td>[Country]</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="destruction">7. How we delete it</h2>
+  <p>
+    When the retention period ends or the information is no longer needed, we delete it without delay. Electronic files are erased so
+    they can't be recovered, and paper records are shredded or incinerated.
+  </p>
+
+  <h2 id="rights">8. Your rights</h2>
+  <p>
+    You can ask to access, correct, delete, or stop the processing of your personal information at any time, either in the app settings
+    or by contacting us below. You can delete your account yourself in the app under <strong>Settings &gt; Account &gt; Delete Account</strong>.
+  </p>
+
+  <h2 id="children">9. Children</h2>
+  <p>The Service isn't available to children under 14. If we learn that an account belongs to someone under 14, we delete it without delay.</p>
+
+  <h2 id="security">10. How we keep it safe</h2>
+  <ul>
+    <li>Encryption of personal information in transit and at rest</li>
+    <li>Access limited to the people who need it, with access logs kept</li>
+    <li>Regular privacy training for staff who handle personal information</li>
+  </ul>
+
+  <h2 id="cookies">11. Cookies and similar technologies</h2>
+  <p>
+    This website doesn't use cookies. The app may collect anonymous usage statistics to improve the Service, and you can turn this off
+    in your device settings.
+  </p>
+
+  <h2 id="officer">12. Privacy officer</h2>
+  <table>
+    <tbody>
+      <tr><th scope="row">Privacy officer</th><td>{company.privacyOfficerEn}</td></tr>
+      <tr><th scope="row">Email</th><td><a href={`mailto:${company.supportEmail}`}>{company.supportEmail}</a></td></tr>
+      {company.phone && <tr><th scope="row">Phone</th><td>{company.phone}</td></tr>}
+    </tbody>
+  </table>
+
+  <h2 id="remedy">13. Where else to get help</h2>
+  <ul>
+    <li>Personal Information Dispute Mediation Committee: 1833-6972 (www.kopico.go.kr)</li>
+    <li>Personal Information Infringement Report Center: 118 (privacy.kisa.or.kr)</li>
+    <li>Supreme Prosecutors’ Office, Cybercrime Investigation: 1301 (www.spo.go.kr)</li>
+    <li>Korean National Police Agency, Cyber Bureau: 182 (ecrm.police.go.kr)</li>
+  </ul>
+
+  <h2 id="changes">14. Changes to this policy</h2>
+  <p>
+    This policy takes effect on {legal.effectiveDateEn}. If we change it, we'll post a notice in the app and on this website at least 7
+    days before the change takes effect.
+  </p>
+</DocLayout>

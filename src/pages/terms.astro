@@ -10,10 +10,10 @@ const { company, legal } = site;
 const name = company.legalNameKo;
 ---
 
-<DocLayout title="이용약관" meta={`시행일 ${legal.effectiveDate}`}>
+<DocLayout title="이용약관" meta={`시행일 ${legal.effectiveDateKo}`}>
   <h2 id="article-1">제1조 (목적)</h2>
   <p>
-    이 약관은 {name}(이하 ‘회사’)가 제공하는 {site.app.name} 서비스(이하 ‘서비스’)의 이용과 관련하여 회사와 이용자의 권리, 의무 및
+    이 약관은 {name}(이하 ‘회사’)가 제공하는 디어비 서비스(이하 ‘서비스’)의 이용과 관련하여 회사와 이용자의 권리, 의무 및
     책임 사항을 정합니다.
   </p>
 
@@ -70,5 +70,5 @@ const name = company.legalNameKo;
   <p>이 약관은 대한민국 법률에 따르며, 서비스 이용으로 발생한 분쟁은 민사소송법상 관할 법원에서 해결합니다.</p>
 
   <h3>부칙</h3>
-  <p>이 약관은 {legal.effectiveDate}부터 시행합니다.</p>
+  <p>이 약관은 {legal.effectiveDateKo}부터 시행합니다.</p>
 </DocLayout>

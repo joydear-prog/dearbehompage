@@ -1,14 +1,13 @@
 ---
-import { site } from '../config/site';
+import { getLang, t } from '../i18n';
+
+const { statement } = t(getLang(Astro.url));
 ---
 
 <!-- 스크롤에 따라 문장이 잉크처럼 번져 진해집니다 (scrub). -->
-<section class="bg-paper py-28 md:py-44" aria-label={`${site.brandKo} 소개`}>
+<section class="bg-paper py-28 md:py-44" aria-label={statement.label}>
   <div class="wrap">
-    <p class="max-w-[21em] text-statement font-semibold" data-fill>
-      {site.brandKo}는 대화를 기억하는 AI 컴패니언을 만듭니다. 어제 나눈 이야기를 오늘 이어가고, 지나가듯 한 말도 잊지 않는
-      대화 상대. 누군가의 하루 끝에 가장 먼저 떠오르는 이름이 되는 것이 우리가 하는 일입니다.
-    </p>
+    <p class="max-w-[21em] text-statement font-semibold" data-fill>{statement.text}</p>
   </div>
 </section>
 

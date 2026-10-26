@@ -32,8 +32,8 @@ Astro 7 (static output) + Tailwind CSS v4 + GSAP/ScrollTrigger + Lenis. Pretenda
 
 ## Capabilities and Constraints
 
-- 페이지: 홈(`/`), 개인정보 처리방침(`/privacy`), 이용약관(`/terms`), 고객지원(`/support`), 404.
-- 회사·연락처·법적 고지 값은 `src/config/site.ts` 한 곳에서만 관리. 실제 값은 아직 미정(TODO 플레이스홀더).
+- 페이지: 홈(`/`), 개인정보 처리방침(`/privacy`), 이용약관(`/terms`), 고객지원(`/support`), 404. 영어판은 같은 경로에 `/en/` 접두사 (헤더 KR/EN 토글).
+- 회사·연락처·법적 고지 값은 `src/config/site.ts`, 화면 문구는 `src/i18n/ui.ts`(ko/en)에서 관리. 전화번호·시행일 등 일부는 TODO.
 - 앱은 출시 전(App Store 출시 준비 중). 다운로드 링크·스토어 배지 없음.
 - 볼륨은 작게 유지 — 블로그, 채용, 뉴스 등은 범위 밖.
 
@@ -41,7 +41,8 @@ Astro 7 (static output) + Tailwind CSS v4 + GSAP/ScrollTrigger + Lenis. Pretenda
 
 - 이름: 디어비 / dearbe — 법인명 디어비 주식회사(DEARBE Corp.)와 동일.
 - 보이스: 친근한 존댓말(해요체), 짧은 문장, 과장·마케팅 수사 없음.
-- 시그니처: 로열 블루 잉크 + 편지지, 히어로의 "Dear you, 오늘 하루는 어땠어요?" 타이핑.
+- 시그니처: 로열 블루 잉크 + 편지지, 히어로의 "Dear you, 네 이야기, 다 기억해" 타이핑 (컴패니언의 반말 한마디). 영어 "I remember every word."
+- 영어 카피는 직역하지 않고 영어권 사용자에게 자연스럽게 다시 쓴다. 과장된 마케팅 어휘(unlock, seamless, elevate 등) 금지.
 
 ## Evidence on Hand
 

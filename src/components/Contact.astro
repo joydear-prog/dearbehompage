@@ -1,11 +1,14 @@
 ---
 import { site } from '../config/site';
-import { href } from '../config/url';
+import { getLang, localize, t } from '../i18n';
+
+const lang = getLang(Astro.url);
+const { contact } = t(lang);
 ---
 
 <section id="contact" class="bg-ink py-28 text-white md:py-40">
   <div class="wrap">
-    <h2 class="text-headline font-bold">함께 나눌 이야기가 있다면</h2>
+    <h2 class="text-headline font-bold">{contact.heading}</h2>
     <a
       href={`mailto:${site.company.email}`}
       class="mt-8 inline-block text-[clamp(1.375rem,6vw,5.5rem)] leading-[1.1] font-bold tracking-[-0.04em] underline decoration-white/35 decoration-2 underline-offset-[0.18em] transition-colors duration-300 hover:decoration-white md:mt-12"
@@ -13,10 +16,11 @@ import { href } from '../config/url';
       {site.company.email}
     </a>
     <div class="mt-12 flex flex-col gap-3 text-white/75 md:mt-16 md:flex-row md:gap-12">
-      <p class="max-w-[30rem]">서비스 제휴, 웹툰·IP 사업, 언론 문의는 위 메일로 보내 주세요.</p>
+      <p class="max-w-[30rem]">{contact.body}</p>
       <p>
-        앱 이용 문의는 <a href={href('support')} class="font-semibold text-white underline underline-offset-4">고객지원</a>에서 확인해
-        주세요.
+        {contact.supportBefore}<a href={localize(lang, 'support')} class="font-semibold text-white underline underline-offset-4"
+          >{contact.supportLink}</a
+        >{contact.supportAfter}
       </p>
     </div>
   </div>

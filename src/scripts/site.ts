@@ -20,7 +20,7 @@ const menu = document.getElementById('mobile-menu');
 if (toggle && menu) {
   const setOpen = (open: boolean) => {
     toggle.setAttribute('aria-expanded', String(open));
-    toggle.textContent = open ? '닫기' : '메뉴';
+    toggle.textContent = (open ? toggle.dataset.labelClose : toggle.dataset.labelOpen) ?? '';
     menu.hidden = !open;
     document.documentElement.style.overflow = open ? 'hidden' : '';
     if (open) lenis?.stop();
