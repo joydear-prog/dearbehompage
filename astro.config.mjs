@@ -6,7 +6,8 @@ import sitemap from '@astrojs/sitemap';
 // SITE / BASE는 GitHub Pages 워크플로가 주입합니다.
 // - 기본 github.io 주소: SITE=https://<user>.github.io, BASE=/dearbehompage
 // - 커스텀 도메인(애플 법인 등록 시 필수): SITE=https://your-domain.com, BASE 비움
-const site = process.env.SITE || 'https://dearbecorp.com';
+// Pages 설정이 HTTPS 강제 전이면 http:// 로 넘어오므로 항상 https 로 맞춥니다.
+const site = (process.env.SITE || 'https://dearbecorp.com').replace(/^http:\/\//, 'https://');
 const base = process.env.BASE || '/';
 
 export default defineConfig({
