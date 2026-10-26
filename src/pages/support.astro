@@ -1,0 +1,66 @@
+---
+/*
+ * 고객지원 — App Store Connect의 'Support URL'에 이 페이지 주소(/support)를 입력합니다.
+ * FAQ 답변은 앱의 실제 메뉴 경로와 일치해야 합니다.
+ */
+import DocLayout from '../layouts/DocLayout.astro';
+import { site } from '../config/site';
+
+const { company } = site;
+
+const faqs = [
+  {
+    q: '계정은 어떻게 삭제하나요?',
+    a: '앱의 설정 > 계정 > 계정 삭제에서 바로 삭제할 수 있습니다. 삭제하면 대화 기록을 포함한 모든 데이터가 파기되며 되돌릴 수 없습니다.',
+  },
+  {
+    q: '대화 내용은 누가 볼 수 있나요?',
+    a: '대화 내용은 암호화되어 저장되며, 응답 생성과 대화 맥락 기억에만 사용됩니다. 설정에서 언제든 대화 기록을 삭제할 수 있습니다.',
+  },
+  {
+    q: '구독은 어떻게 해지하나요?',
+    a: 'iPhone의 설정 > Apple 계정 > 구독에서 해지할 수 있습니다. 환불은 Apple의 환불 정책에 따라 reportaproblem.apple.com에서 요청할 수 있습니다.',
+  },
+  {
+    q: '부적절한 대화를 신고하고 싶어요.',
+    a: '문제가 된 메시지를 길게 누른 뒤 신고하기를 선택하세요. 신고된 내용은 검토 후 조치합니다.',
+  },
+  {
+    q: `${site.brandKo}의 캐릭터는 실제 사람인가요?`,
+    a: '아니요. 모든 캐릭터는 AI입니다. 앱 안에서 항상 AI임을 표시합니다.',
+  },
+  {
+    q: '마음이 많이 힘들어요.',
+    a: '혼자 견디지 마세요. 자살예방상담전화 109, 정신건강위기상담전화 1577-0199에서 24시간 전문 상담을 받을 수 있습니다.',
+  },
+];
+---
+
+<DocLayout title="고객지원" meta={`${site.app.name} 앱 이용 중 궁금한 점을 확인하세요.`}>
+  <h2 id="contact" class="mt-0">문의하기</h2>
+  <table>
+    <tbody>
+      <tr><th scope="row">이메일</th><td><a href={`mailto:${company.supportEmail}`}>{company.supportEmail}</a></td></tr>
+      <tr><th scope="row">전화</th><td>{company.phone}</td></tr>
+      <tr><th scope="row">운영 시간</th><td>{company.hours}</td></tr>
+    </tbody>
+  </table>
+  <p>문의를 보내실 때 앱 버전과 기기 모델을 함께 적어 주시면 더 빠르게 도와드릴 수 있습니다.</p>
+
+  <h2 id="faq">자주 묻는 질문</h2>
+  <div class="border-t border-rule">
+    {
+      faqs.map(({ q, a }) => (
+        <details class="group border-b border-rule">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-5 font-semibold [&::-webkit-details-marker]:hidden">
+            {q}
+            <span class="text-[1.375rem] leading-none font-normal text-graphite transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+              +
+            </span>
+          </summary>
+          <p class="pb-6 text-graphite">{a}</p>
+        </details>
+      ))
+    }
+  </div>
+</DocLayout>

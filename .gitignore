@@ -1,0 +1,20 @@
+# build
+dist/
+.astro/
+
+# deps
+node_modules/
+
+# local screenshots (npm run shot)
+.shots/
+
+# env / OS
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+
+# local-only Claude / impeccable state
+.claude/settings.local.json
+.impeccable/*.local.json

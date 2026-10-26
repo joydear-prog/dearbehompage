@@ -1,0 +1,104 @@
+---
+import { site } from '../config/site';
+
+const salutation = 'Dear you,';
+const message = ['오늘 하루는', '어땠어요?'];
+---
+
+<!--
+  히어로 = 컴패니언이 방문자에게 보내는 첫 메시지.
+  편지지의 괘선 위에 만년필로 써 내려가듯 한 글자씩 타이핑됩니다. (페이지의 유일한 '연출' 모먼트)
+-->
+<section data-hero class="relative flex min-h-[100svh] flex-col overflow-hidden bg-ink text-white">
+  <div class="wrap flex flex-1 flex-col justify-center pt-28 pb-12">
+    <p class="mb-3 text-[clamp(1.25rem,2.6vw,2.25rem)] font-medium tracking-[-0.02em] text-white/75 md:mb-5">
+      <span class="sr-only">{salutation}</span>
+      <span aria-hidden="true" data-type>{salutation}</span>
+    </p>
+    <h1 class="ruled text-display font-bold">
+      <span class="sr-only">{message.join(' ')}</span>
+      <span aria-hidden="true" data-type>{message[0]}<br />{message[1]}</span>
+    </h1>
+  </div>
+
+  <div class="wrap pb-8 md:pb-12" data-after-type>
+    <div class="flex flex-col gap-5 pt-6 md:flex-row md:items-end md:justify-between">
+      <p class="max-w-[30rem] text-[1.0625rem] leading-[1.65] text-white/80 md:text-lg">
+        {site.brandKo}는 당신이 들려준 이야기를 기억하고, 다음 대화를 먼저 기다리는 AI 컴패니언입니다.
+      </p>
+      <p class="inline-flex items-center gap-2.5 text-[0.9375rem] text-white/80">
+        <span class="size-2 rounded-full bg-blush" aria-hidden="true"></span>
+        {site.app.status}
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* 편지지 괘선: 줄 높이(1.02em)마다 아래쪽에 한 줄 */
+  .ruled {
+    background-image: linear-gradient(
+      to bottom,
+      transparent calc(100% - 1px),
+      rgb(255 255 255 / 0.28) calc(100% - 1px)
+    );
+    background-size: 100% 1.02em;
+    padding-bottom: 0.02em;
+  }
+</style>
+
+<script>
+  import { prefersReducedMotion } from '../scripts/motion';
+
+  const hero = document.querySelector<HTMLElement>('[data-hero]');
+  const targets = hero ? [...hero.querySelectorAll<HTMLElement>('[data-type]')] : [];
+
+  // 글자 단위로 쪼개기 (<br>은 유지)
+  const chars: HTMLElement[] = [];
+  for (const target of targets) {
+    for (const node of [...target.childNodes]) {
+      if (node.nodeType !== Node.TEXT_NODE) continue;
+      const frag = document.createDocumentFragment();
+      for (const ch of Array.from(node.textContent ?? '')) {
+        const span = document.createElement('span');
+        span.className = 'ch';
+        span.textContent = ch;
+        frag.append(span);
+        chars.push(span);
+      }
+      node.replaceWith(frag);
+    }
+    target.setAttribute('data-type-ready', '');
+  }
+
+  const finish = () => hero?.classList.add('is-typed');
+
+  if (!hero || prefersReducedMotion) {
+    chars.forEach((c) => c.classList.add('on'));
+    finish();
+  } else {
+    const caret = document.createElement('span');
+    caret.className = 'caret-anchor';
+    caret.innerHTML = '<span class="caret"></span>';
+    targets[0]?.prepend(caret);
+
+    const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+    (async () => {
+      await wait(650);
+      for (const [i, ch] of chars.entries()) {
+        const next = chars[i + 1];
+        // 문장부호·줄바꿈·다음 문단 앞에서는 손을 멈추듯 잠깐 쉼
+        const atLineEnd = ch.nextSibling?.nodeName === 'BR';
+        const pause =
+          (/[,.?]/.test(ch.textContent ?? '') ? 420 : 0) +
+          (atLineEnd ? 300 : 0) +
+          (next && next.parentElement !== ch.parentElement ? 380 : 0);
+        ch.classList.add('on');
+        ch.after(caret);
+        await wait(62 + Math.random() * 70 + pause);
+      }
+      finish();
+    })();
+  }
+</script>

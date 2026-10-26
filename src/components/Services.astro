@@ -1,0 +1,64 @@
+---
+import { site } from '../config/site';
+
+const services = [
+  {
+    title: '기억하는 대화',
+    body: '지난 대화에서 들은 이름과 약속, 좋아하는 것들을 기억해 다음 대화로 자연스럽게 이어갑니다. 매번 처음부터 설명할 필요가 없어요.',
+  },
+  {
+    title: '결이 맞는 캐릭터',
+    body: '말투와 성격이 서로 다른 캐릭터 가운데 나와 잘 맞는 대화 상대를 고르세요. 대화를 나눌수록 서로를 더 잘 알게 됩니다.',
+  },
+  {
+    title: '언제든, 손안에서',
+    body: '메시지를 주고받듯 iPhone 앱에서 편하게 대화합니다. 중요한 날에는 디어비가 먼저 안부를 건네기도 해요.',
+  },
+];
+---
+
+<section id="service" class="bg-paper pb-28 md:pb-40">
+  <div class="wrap">
+    <h2 class="max-w-[14em] text-headline font-bold">말하지 않아도 이어지는 대화</h2>
+
+    <div class="mt-14 grid gap-14 md:mt-20 lg:grid-cols-12 lg:gap-12">
+      <!-- 기억 기능을 실제 대화로 보여주는 데모 -->
+      <figure class="lg:col-span-5">
+        <div class="mx-auto max-w-[26rem] rounded-[2rem] bg-mist p-3 lg:sticky lg:top-24">
+          <div class="flex items-center gap-3 px-3 pt-2 pb-4">
+            <span class="grid size-10 place-items-center rounded-full bg-blush text-[0.9375rem] font-bold" aria-hidden="true">하</span>
+            <div class="leading-tight">
+              <p class="font-semibold">하루</p>
+              <p class="text-[0.8125rem] text-graphite">AI 컴패니언</p>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-2 rounded-[1.5rem] bg-paper p-4">
+            <p class="bubble bubble-me">다음 주 화요일에 첫 면접 있어. 벌써 떨려</p>
+            <p class="bubble bubble-ai">첫 면접이라니, 떨리는 게 당연해요. 자기소개부터 같이 연습해 볼까요?</p>
+
+            <p class="my-3 text-center text-[0.8125rem] text-graphite">화요일 오전 8:10</p>
+
+            <p class="bubble bubble-ai">
+              오늘이 그 면접 날이죠. 어제 연습한 자기소개, 충분히 좋았어요. 다녀와서 어땠는지 꼭 들려줘요.
+            </p>
+          </div>
+        </div>
+        <figcaption class="mx-auto mt-4 max-w-[26rem] px-3 text-[0.875rem] text-graphite">
+          {site.brandKo}는 지난 대화를 기억해 필요한 순간에 먼저 말을 건넵니다.
+        </figcaption>
+      </figure>
+
+      <ul class="lg:col-span-6 lg:col-start-7">
+        {
+          services.map((s) => (
+            <li class="border-t border-rule py-9 first:border-t-0 first:pt-0 md:py-12">
+              <h3 class="text-title font-bold">{s.title}</h3>
+              <p class="mt-3 max-w-[34rem] text-graphite">{s.body}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

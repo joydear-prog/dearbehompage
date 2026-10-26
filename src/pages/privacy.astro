@@ -1,0 +1,124 @@
+---
+/*
+ * 개인정보 처리방침 — 템플릿
+ * ⚠️ 게시 전 실제 수집 항목·위탁사·국외 이전 현황에 맞게 수정하고 법률 검토를 받으세요.
+ *    App Store Connect의 'Privacy Policy URL'에 이 페이지 주소(/privacy)를 입력합니다.
+ */
+import DocLayout from '../layouts/DocLayout.astro';
+import { site } from '../config/site';
+
+const { company, legal } = site;
+const name = company.legalNameKo;
+---
+
+<DocLayout title="개인정보 처리방침" meta={`시행일 ${legal.effectiveDate}`}>
+  <p>
+    {name}(이하 ‘회사’)는 「개인정보 보호법」 등 관련 법령을 준수하며, {site.app.name} 서비스(이하 ‘서비스’) 이용자의 개인정보를
+    안전하게 보호하기 위해 다음과 같이 개인정보 처리방침을 수립·공개합니다.
+  </p>
+
+  <h2 id="purpose">1. 개인정보의 처리 목적</h2>
+  <ul>
+    <li>회원 가입 및 관리: 본인 식별, 연령 확인, 부정 이용 방지</li>
+    <li>서비스 제공: AI 컴패니언과의 대화, 대화 맥락 기억, 캐릭터 맞춤 응답 제공</li>
+    <li>안전한 이용 환경: 유해 콘텐츠 차단, 신고 처리, 위기 상황 시 전문 기관 안내</li>
+    <li>유료 서비스: 구매 내역 확인 및 이용 권한 부여 (결제는 Apple이 처리)</li>
+    <li>고객 지원 및 공지사항 전달</li>
+  </ul>
+
+  <h2 id="items">2. 처리하는 개인정보 항목</h2>
+  <table>
+    <thead>
+      <tr><th scope="col">구분</th><th scope="col">항목</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>필수</td><td>이메일 또는 Apple 로그인 식별자, 닉네임, 생년(연령 확인용)</td></tr>
+      <tr><td>서비스 이용</td><td>대화 내용, 캐릭터 설정, 서비스 이용 기록, 기기 정보(OS 버전, 앱 버전)</td></tr>
+      <tr><td>유료 이용</td><td>구매 내역(거래 식별자). 카드번호 등 결제 정보는 회사가 수집하지 않습니다.</td></tr>
+      <tr><td>고객 문의</td><td>이메일 주소, 문의 내용</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="ai">3. 대화 내용의 처리</h2>
+  <ul>
+    <li>대화 내용은 응답 생성과 대화 맥락 기억을 위해 처리되며, 전송 및 저장 시 암호화됩니다.</li>
+    <li>이용자는 앱의 설정에서 개별 대화 또는 전체 대화 기록을 언제든 삭제할 수 있습니다.</li>
+    <li>
+      서비스 품질 개선에 대화 내용을 활용하는 경우, 사전에 별도 동의를 받고 개인을 식별할 수 없도록 가명 처리한 뒤 활용합니다. 동의는
+      언제든 철회할 수 있습니다.
+    </li>
+  </ul>
+
+  <h2 id="retention">4. 보유 및 이용 기간</h2>
+  <p>
+    회원 탈퇴 시 개인정보를 지체 없이 파기합니다. 다만 관련 법령에 따라 보존할 필요가 있는 경우 해당 기간 동안 보관합니다.
+  </p>
+  <ul>
+    <li>계약 또는 청약철회 등에 관한 기록: 5년 (전자상거래법)</li>
+    <li>소비자 불만 또는 분쟁 처리에 관한 기록: 3년 (전자상거래법)</li>
+    <li>서비스 접속 기록: 3개월 (통신비밀보호법)</li>
+  </ul>
+
+  <h2 id="third-party">5. 개인정보의 제3자 제공</h2>
+  <p>회사는 이용자의 동의가 있거나 법령에 근거한 경우를 제외하고 개인정보를 제3자에게 제공하지 않습니다.</p>
+
+  <h2 id="outsourcing">6. 처리 위탁 및 국외 이전</h2>
+  <p>회사는 원활한 서비스 제공을 위해 다음과 같이 업무를 위탁하고 있습니다.</p>
+  <table>
+    <thead>
+      <tr><th scope="col">수탁자</th><th scope="col">위탁 업무</th><th scope="col">이전 국가</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>[클라우드 사업자명]</td><td>데이터 보관 및 서버 운영</td><td>[국가]</td></tr>
+      <tr><td>[AI 모델 제공자명]</td><td>대화 응답 생성</td><td>[국가]</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="destruction">7. 개인정보의 파기</h2>
+  <p>
+    보유 기간이 끝나거나 처리 목적이 달성된 개인정보는 지체 없이 파기합니다. 전자적 파일은 복구할 수 없는 방법으로 삭제하고, 종이 문서는
+    분쇄하거나 소각합니다.
+  </p>
+
+  <h2 id="rights">8. 이용자의 권리와 행사 방법</h2>
+  <p>
+    이용자는 언제든지 개인정보 열람, 정정, 삭제, 처리 정지를 요구할 수 있습니다. 앱의 설정 메뉴 또는 아래 연락처로 요청하면 지체 없이
+    조치합니다. 계정 삭제는 앱의 <strong>설정 &gt; 계정 &gt; 계정 삭제</strong>에서 직접 할 수 있습니다.
+  </p>
+
+  <h2 id="children">9. 아동의 개인정보</h2>
+  <p>서비스는 만 14세 미만 아동의 가입을 받지 않으며, 만 14세 미만으로 확인된 계정은 지체 없이 삭제합니다.</p>
+
+  <h2 id="security">10. 안전성 확보 조치</h2>
+  <ul>
+    <li>개인정보 전송 및 저장 시 암호화</li>
+    <li>개인정보 접근 권한의 최소화 및 접근 기록 보관</li>
+    <li>개인정보 취급자 대상 정기 교육</li>
+  </ul>
+
+  <h2 id="cookies">11. 자동 수집 장치</h2>
+  <p>
+    이 웹사이트는 쿠키를 사용하지 않습니다. 앱은 서비스 개선을 위해 비식별 이용 통계를 수집할 수 있으며, 기기 설정에서 거부할 수
+    있습니다.
+  </p>
+
+  <h2 id="officer">12. 개인정보 보호책임자</h2>
+  <table>
+    <tbody>
+      <tr><th scope="row">보호책임자</th><td>{company.privacyOfficer}</td></tr>
+      <tr><th scope="row">이메일</th><td><a href={`mailto:${company.supportEmail}`}>{company.supportEmail}</a></td></tr>
+      <tr><th scope="row">전화</th><td>{company.phone}</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="remedy">13. 권익 침해 구제 방법</h2>
+  <ul>
+    <li>개인정보분쟁조정위원회: 1833-6972 (www.kopico.go.kr)</li>
+    <li>개인정보침해신고센터: 118 (privacy.kisa.or.kr)</li>
+    <li>대검찰청: 1301 (www.spo.go.kr)</li>
+    <li>경찰청: 182 (ecrm.police.go.kr)</li>
+  </ul>
+
+  <h2 id="changes">14. 처리방침의 변경</h2>
+  <p>이 개인정보 처리방침은 {legal.effectiveDate}부터 적용됩니다. 내용이 변경되면 시행 7일 전부터 앱과 웹사이트에 공지합니다.</p>
+</DocLayout>
