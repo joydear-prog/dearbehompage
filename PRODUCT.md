@@ -41,7 +41,7 @@ Astro 7 (static output) + Tailwind CSS v4 + GSAP/ScrollTrigger + Lenis. Pretenda
 
 - 이름: 디어비 / dearbe — 법인명 디어비 주식회사(DEARBE Corp.)와 동일.
 - 보이스: 친근한 존댓말(해요체), 짧은 문장, 과장·마케팅 수사 없음.
-- 시그니처: 로열 블루 잉크 + 편지지, 히어로의 "Dear you, 네 이야기, 다 기억해" 타이핑 (컴패니언의 반말 한마디). 영어 "I remember every word."
+- 시그니처: 로열 블루 잉크 + 편지지, 히어로의 "Dear you, Where were we?" 타이핑 — 한·영 페이지 모두 영어 타이포로 통일 — 기능(기억)을 직접 말하지 않고, 기억하기 때문에 나오는 말로 보여준다.
 - 영어 카피는 직역하지 않고 영어권 사용자에게 자연스럽게 다시 쓴다. 과장된 마케팅 어휘(unlock, seamless, elevate 등) 금지.
 
 ## Evidence on Hand

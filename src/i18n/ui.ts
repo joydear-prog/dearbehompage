@@ -9,6 +9,9 @@ import { site } from '../config/site';
 
 const { company } = site;
 
+/** 히어로 타이포는 두 언어 모두 영어로 통일 (브랜드 시그니처) */
+const heroType = { salutation: 'Dear you,', lines: ['Where', 'were we?'] };
+
 const ko = {
   brandName: '디어비',
   locale: 'ko_KR',
@@ -31,8 +34,7 @@ const ko = {
     langLabel: '언어 선택',
   },
   hero: {
-    salutation: 'Dear you,',
-    lines: ['네 이야기,', '다 기억해'],
+    ...heroType,
     lead: '디어비는 당신이 들려준 이야기를 기억하고, 다음 대화를 먼저 기다리는 AI 컴패니언입니다.',
     status: 'App Store 출시 준비 중',
   },
@@ -165,8 +167,7 @@ const en: Dict = {
     langLabel: 'Language',
   },
   hero: {
-    salutation: 'Dear you,',
-    lines: ['I remember', 'every word.'],
+    ...heroType,
     lead: 'Dearbe is an AI companion that remembers what you share and picks up right where you left off.',
     status: 'Coming soon to the App Store',
   },
