@@ -53,9 +53,9 @@ const message = ['오늘 하루는', '어땠어요?'];
   const hero = document.querySelector<HTMLElement>('[data-hero]');
   const targets = hero ? [...hero.querySelectorAll<HTMLElement>('[data-type]')] : [];
 
-  // 글자 단위로 쪼개기 (<br>은 유지)
-  const chars: HTMLElement[] = [];
-  for (const target of targets) {
+  // 줄(target)마다 글자 단위로 쪼개기 (<br>은 유지)
+  const lines = targets.map((target) => {
+    const chars: HTMLElement[] = [];
     for (const node of [...target.childNodes]) {
       if (node.nodeType !== Node.TEXT_NODE) continue;
       const frag = document.createDocumentFragment();
@@ -69,35 +69,38 @@ const message = ['오늘 하루는', '어땠어요?'];
       node.replaceWith(frag);
     }
     target.setAttribute('data-type-ready', '');
-  }
+    return { target, chars };
+  });
 
   const finish = () => hero?.classList.add('is-typed');
 
   if (!hero || prefersReducedMotion) {
-    chars.forEach((c) => c.classList.add('on'));
+    lines.forEach(({ chars }) => chars.forEach((c) => c.classList.add('on')));
     finish();
   } else {
-    const caret = document.createElement('span');
-    caret.className = 'caret-anchor';
-    caret.innerHTML = '<span class="caret"></span>';
-    targets[0]?.prepend(caret);
-
     const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-    (async () => {
-      await wait(650);
-      for (const [i, ch] of chars.entries()) {
-        const next = chars[i + 1];
-        // 문장부호·줄바꿈·다음 문단 앞에서는 손을 멈추듯 잠깐 쉼
-        const atLineEnd = ch.nextSibling?.nodeName === 'BR';
-        const pause =
-          (/[,.?]/.test(ch.textContent ?? '') ? 420 : 0) +
-          (atLineEnd ? 300 : 0) +
-          (next && next.parentElement !== ch.parentElement ? 380 : 0);
+    // 인사말과 본문이 동시에 써지고, 각 줄에 커서가 따라갑니다.
+    // 마지막 줄(본문)의 커서만 끝까지 남아 깜빡입니다.
+    const typeLine = async ({ target, chars }: (typeof lines)[number], isLast: boolean) => {
+      const caret = document.createElement('span');
+      caret.className = 'caret-anchor';
+      caret.innerHTML = '<span class="caret"></span>';
+      target.prepend(caret);
+
+      for (const ch of chars) {
+        // 문장부호·줄바꿈 앞에서는 손을 멈추듯 잠깐 쉼
+        const pause = (/[,.?]/.test(ch.textContent ?? '') ? 420 : 0) + (ch.nextSibling?.nodeName === 'BR' ? 300 : 0);
         ch.classList.add('on');
         ch.after(caret);
         await wait(62 + Math.random() * 70 + pause);
       }
+      if (!isLast) caret.remove();
+    };
+
+    (async () => {
+      await wait(650);
+      await Promise.all(lines.map((line, i) => typeLine(line, i === lines.length - 1)));
       finish();
     })();
   }
