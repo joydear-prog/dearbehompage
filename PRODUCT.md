@@ -39,13 +39,16 @@ Astro 7 (static output) + Tailwind CSS v4 + GSAP/ScrollTrigger + Lenis. Pretenda
 
 ## Brand Commitments
 
-- 이름: 디어비 / dearbe (가칭, 변경 가능 — `site.ts`의 `brand`, `brandKo`).
+- 이름: 디어비 / dearbe — 법인명 디어비 주식회사(DEARBE Corp.)와 동일.
 - 보이스: 친근한 존댓말(해요체), 짧은 문장, 과장·마케팅 수사 없음.
 - 시그니처: 로열 블루 잉크 + 편지지, 히어로의 "Dear you, 오늘 하루는 어땠어요?" 타이핑.
 
 ## Evidence on Hand
 
-- 실제 사용자 수, 투자, 수상, 언론 보도, 후기 **없음**. 지어내지 말 것.
+- 회사 정보: 사업자등록증(2026.10.20 발급) 기준 — 디어비 주식회사(DEARBE Corp.), 대표 배준석, 개업 2020.11, 마포구 마포대로 92. 업종: 소프트웨어 개발·제조, 만화 출판업. 값은 `src/config/site.ts`.
+- 이력: 2020년 웹툰 제작사(구 로드비웹툰)로 시작. 제작 웹툰 9편과 국내 서비스 플랫폼 목록이 `site.works`에 있음 (작품별 현황 기준).
+- 도메인 `dearbecorp.com` (Squarespace 등록, Google Workspace 메일 운영 중).
+- 실제 앱 사용자 수, 투자, 수상, 언론 보도, 후기 **없음**. 지어내지 말 것. 계약 조건·금액 등 내부 정보는 사이트에 쓰지 않음.
 - 앱 스크린샷 없음 — 서비스 섹션의 대화 데모는 HTML로 구성한 예시 대화.
 
 ## Product Principles

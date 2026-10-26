@@ -107,7 +107,7 @@ const name = company.legalNameKo;
     <tbody>
       <tr><th scope="row">보호책임자</th><td>{company.privacyOfficer}</td></tr>
       <tr><th scope="row">이메일</th><td><a href={`mailto:${company.supportEmail}`}>{company.supportEmail}</a></td></tr>
-      <tr><th scope="row">전화</th><td>{company.phone}</td></tr>
+      {company.phone && <tr><th scope="row">전화</th><td>{company.phone}</td></tr>}
     </tbody>
   </table>
 
