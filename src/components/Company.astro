@@ -1,5 +1,4 @@
 ---
-import { site } from '../config/site';
 import { getLang, t } from '../i18n';
 
 const lang = getLang(Astro.url);
@@ -26,22 +25,5 @@ const rows = company.rows.filter(([, value]) => value);
         ))
       }
     </dl>
-
-    <div class="mt-6 lg:col-span-12 lg:mt-16">
-      <h3 class="text-title font-bold">{company.worksHeading}</h3>
-      {company.worksNote && <p class="mt-2 text-[0.875rem] text-graphite">{company.worksNote}</p>}
-      <ul class="mt-6 grid border-t border-rule sm:grid-cols-2 sm:gap-x-12 lg:grid-cols-3">
-        {
-          site.works.map((w) => (
-            <li class="border-b border-rule py-5">
-              <p class="font-semibold" lang="ko">
-                {w.title}
-              </p>
-              <p class="mt-1 text-[0.875rem] text-graphite">{w.platforms.map((p) => p[lang]).join(', ')}</p>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
   </div>
 </section>

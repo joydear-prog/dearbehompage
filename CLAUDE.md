@@ -20,7 +20,7 @@ Node 22.12 이상 필요 (`.nvmrc`는 24). Astro는 7.3.x로 고정되어 있습
 ## 구조
 
 ```
-src/config/site.ts        회사·연락처·법적 고지·제작 웹툰 등 사실 값 (유일한 출처)
+src/config/site.ts        회사·연락처·법적 고지 등 사실 값 (유일한 출처)
 src/i18n/ui.ts            화면 문구 — ko / en 같은 구조. 영어는 직역 말고 자연스럽게
 src/i18n/index.ts         getLang · t · localize · switchLang (한국어 /, 영어 /en/)
 src/config/url.ts         base 경로를 반영하는 href() — 내부 링크는 항상 이걸로

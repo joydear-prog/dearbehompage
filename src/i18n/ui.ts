@@ -97,8 +97,6 @@ const ko = {
       ['이메일', company.email],
       ['운영 시간', company.hoursKo],
     ],
-    worksHeading: '제작한 웹툰',
-    worksNote: '',
   },
   contact: {
     heading: '함께 나눌 이야기가 있다면',
@@ -239,8 +237,6 @@ const en: Dict = {
       ['Email', company.email],
       ['Hours', company.hoursEn],
     ],
-    worksHeading: "Webtoons we've produced",
-    worksNote: 'Titles are listed as published in Korea.',
   },
   contact: {
     heading: 'Have a story to share?',
